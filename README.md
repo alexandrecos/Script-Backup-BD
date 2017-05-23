@@ -1,46 +1,30 @@
-# Script-Backup-BD
-Script de criação de um Backup do Banco de Dados Postgres
+Este Script tem por sua finalidade realizar um backup de uma BDPOSTGRESQL, temos a declaração de variáveis e
+as regras para inicialização e realização do BACKUP.
 
+#SHELLSCRIPTPARABACKUPBDPOSTGRE
 
-#Comandos inicialização.
+#!/bin/sh
 
-/usr/lib/postgresql/x.y/bin/bercariodb -D
+#bkp_bercario.sh
 
-/usr/local/pgsql/data
+#DATA iria imprimir a data no estilo dia-mes-ano.
 
-/usr/lib/postgresql/9.5/bin/pg_ctl -D
+DATA='/bin/date+%d-%m-%Y'
 
-/var/lib/postgresql/9.5 -l logfile start
+#NOME armazena o nome do arquivo de BACKUP
+#O Diretório onde o arquivo será salvo neste caso é.
 
-#SCRIPT para Banco de Dados
+#/www/virtual/backup é uma pasta publica do apache.
 
+#Coloque o diretorio onde quiser guardar o BACKUP.
 
-#!/bin/bash
+NOME="/www/virtual/backup/bercario-$DATA.sql"
 
-export PGPASSWORD="23011995"
+#Variaveis do POSTGRESQL
 
-pg_dump -U postgres -h localhost -O -o -b -F c bercario > bercario.backup
+HOST="localhost"
+USER="postgre"
+PASSWORD="23011995"
+DATABASE="bercario.sh"
 
-today=$(date +%y%m%d)
-
-# Local onde os backups vão:
-
-myDir='/disk2/backup/pg'
-
-function backup_pgsql {
-
-#Seleciona os bancos a serem copiados, eliminando os bancos de sistema
-        
-for db in 'psql -U postgres -tq -d template1 -c bercario ('template1','template0','postgres')"`; do
-echo 'Iniciando o backup de '${db};
-bercario="${myDir}/${db}-${today}.tar";
-pg_dump -U postgres -F bercario -f $bercario $db;
-gzip $bercario;
-echo 'Backup concluido';
-done;
-}
-
-backup_pgsql
-
-
-pg_restore -U postgres -h localhost -d bercario bercario.backup
+pg_dump -h $localhost -u $postgre -p $23011995 $bercario.sh > $backup
