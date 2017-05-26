@@ -19,16 +19,16 @@ DATA='/bin/date+%d-%m-%Y'
 
 #Coloque o diretorio onde quiser guardar o BACKUP.
 
-NOME="/www/virtual/backup/bercario-$DATA.sql"
+NOME="/www/virtual/backup/bercario.sh-$DATA.sql"
 
 #Variaveis do POSTGRESQL
 
 HOST="localhost"
 
-USER="postgre"
+USER="postgres"
 
 PASSWORD="23011995"
 
 DATABASE="bercario.sh"
 
-pg_dump -h $localhost -u $postgre -p $23011995 $bercario.sh > $backup
+pg_dump -h $localhost -u $postgres -p $23011995 $bercario.sh > $bercario.backup
