@@ -12,6 +12,7 @@ as regras para inicialização e realização do BACKUP.
 DATA='/bin/date+%d-%m-%Y'
 
 #NOME armazena o nome do arquivo de BACKUP
+
 #O Diretório onde o arquivo será salvo neste caso é.
 
 #/www/virtual/backup é uma pasta publica do apache.
