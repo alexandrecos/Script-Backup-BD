@@ -24,8 +24,11 @@ NOME="/www/virtual/backup/bercario-$DATA.sql"
 #Variaveis do POSTGRESQL
 
 HOST="localhost"
+
 USER="postgre"
+
 PASSWORD="23011995"
+
 DATABASE="bercario.sh"
 
 pg_dump -h $localhost -u $postgre -p $23011995 $bercario.sh > $backup
